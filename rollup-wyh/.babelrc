@@ -1,0 +1,8 @@
+{
+  "presets": [
+    ["latest",{
+      "@babel/env": {"modules": false}
+    }]
+  ],
+  "plugins": ["@babel/plugin-external-helpers"]
+}
