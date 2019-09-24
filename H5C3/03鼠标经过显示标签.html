@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标经过显示标签</title>
+    <style>
+        div {
+            width: 277px;
+            height: 167px;
+            margin: 10px auto;
+            position: relative;
+        }
+        div:hover::before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            border: 10px solid rgba(255,255,255, 0.3);
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;:
+        }
+    </style>
+</head>
+<body>
+<div>
+    <img src="static/1553479288(1).jpg" width="277" height="167">
+</div>
+</body>
+</html>

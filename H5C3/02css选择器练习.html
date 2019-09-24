@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css选择器练习</title>
+    <style>
+        body {
+            font-size: 16px;
+            font-family: "Microsoft YaHei"
+        }
+        li {
+            color: green;
+        }
+        a {
+            color: red;
+        }
+        .nav > div {
+            font-weight: bold;
+        }
+        .site-1::before {
+            content: '开始'
+        }
+        .site-1::first-letter {
+            color: red;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+<div class="nav">
+    <ul>
+        <li>公司首页</li>
+        <li>公司简介</li>
+        <li>公司产品</li>
+        <li>练习我们</li>
+    </ul>
+    <div>收藏本站</div>
+</div>
+<div class="sitenav">
+    <div class="site-1">左侧导航栏</div>
+    <div class="site-2"><a href="#">登录</a></div>
+</div>
+</body>
+</html>

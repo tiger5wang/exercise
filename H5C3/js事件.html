@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        p {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <a href="http://imooc.com" id="link1">imooc.com</a> <br/>
+    <a href="http://imooc.com" id="link2">imooc.com</a> <br/>
+    <a href="http://imooc.com" id="link3">imooc.com</a> <br/>
+    <a href="http://imooc.com" id="link4">imooc.com</a> <br/>
+    <a href="http://imooc.com" id="link5">imooc.com</a> <br/>
+    <a href="http://imooc.com" id="link6">imooc.com</a> <br/>
+    <p id="p1">确认</p>
+    <p id="p2">取消</p>
+</div>
+<div id="div2">
+    <p id="p3">取消</p>
+    <p id="p4">取消</p>
+    <div>
+        <p>quxiao</p>
+    </div>
+</div>
+<script>
+    // 通用绑定事件函数，事件冒泡
+    function bindElem(elem, type, selector, fn) {
+        if(fn == null) {
+            fn = selector
+            selector = null
+        }
+        elem.addEventListener(type, function(e) {
+            var target = e.target
+            if(selector) {
+                // 事件代理，事件委托
+                if(target.matches(selector) ){
+                    fn.call(target,e)
+                }
+            } else {
+                fn(e)
+            }
+        })
+    }
+    var div1 = document.getElementById('div1')
+    bindElem(div1, 'click', 'a', function(e){
+        e.preventDefault()
+        console.log(this.innerHTML)
+        console.log(e.target.innerHTML)
+    } )
+    var p1 = document.getElementById('p1')
+    bindElem(p1, 'click', function(e){
+        console.log(e.target.innerHTML)
+        console.log(p1.innerHTML)
+    } )
+
+    // XMLHttpRequest
+   var xhr = new XMLHttpRequest()
+   xhr.open('GET','/open.zhuna.cn/', false)  //false表示异步
+   xhr.onreadystatechange = function () {
+       //下面这里是异步执行
+       if(xhr.readyState === 4) {
+           if(xhr.status === 200) {
+               alert(xhr.responseText)
+           }
+       }
+   }
+   xhr.send(null)
+   //原理： xhr对象执行send方法后，xhr对象会一直监听readyState状态的变化，readyState一旦变化就会触发onreadystatechang函数
+
+    var xhr = new XMLHttpRequest()
+    xhr.open('GET','/',false)  //false 表示异步
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                console.log(xhr.responseText)
+            }
+        }
+    }
+    xhr.send(null)
+
+
+    /*function bindElem(elem,type,selector,fn) {
+        if(fn == null) {
+            fn = selector;
+            selector = null
+        }
+        elem.addEventListener(type, function(e) {
+            var target
+            if(selector) {
+                //代理(冒泡的应用)
+                target = e.target
+                if(target.matches(selector)){
+                    fn.call(target,e)
+                }
+            } else {
+                //不是代理
+                fn(e)
+            }
+        })
+    }*/
+
+    /*var div1 = document.getElementById('div1');
+    bindElem(div1, 'click', 'a', function(e) {
+        e.preventDefault()  //阻止默认行为
+        console.log(this.innerHTML)
+    });
+
+    var p1 = document.getElementById('p1');
+    bindElem(p1, 'click', function(e) {
+        console.log(e.target.innerHTML)
+        console.log(p1.innerHTML)
+    })*/
+
+
+    // var a= document.getElementById('link1')
+    // bindEvent(a,'click',function(e) {
+    //     var target = e.target
+    //     e.preventDefault()
+    //     console.log(target.nodeName)
+    // })
+    //
+    // var p1 = document.getElementById('p1')
+    // p1.addEventListener('click',function(e) {
+    //     // e.stopPropagation()
+    //     alert('激活')
+    // })
+    // var body = document.body
+    // body.addEventListener('click', function(e) {
+    //     alert('取消')
+    // })
+</script>
+
+</body>
+</html>

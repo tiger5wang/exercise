@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="p1">这是一个p标签</p>
+<p>这是一个p标签</p>
+<p>这是一个p标签</p>
+<p>这是一个p标签</p>
+<div id="div1">
+    <p id="p2">这是div中的p标签</p>
+</div>
+
+<!--<script src="zepto.js"></script>-->
+<!--<script src="my_jquery.js"></script>-->
+<!--<script>-->
+    <!--var $p = $('p');-->
+    <!--$p.css('font-size', '40px');-->
+    <!--console.log('html',$p.html());-->
+<!--</script>-->
+<!--<script>-->
+    <!--var $div = $('#div1');-->
+    <!--$div.css('color', 'red');-->
+    <!--console.log('html', $div.html())-->
+<!--</script>-->
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    // 扩展插件
+    $.fn.getNodeName = function() {
+        alert(this[0].nodeName)
+    }
+</script>
+
+<script>
+    // 使用插件
+    $p = $('p');
+    $p.getNodeName();
+    $div = $('#div1');
+    $div.getNodeName();
+</script>
+
+</body>
+</html>

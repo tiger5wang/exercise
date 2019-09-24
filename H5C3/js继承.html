@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS继承</title>
+    <script>
+        // var extendss = function (subclass,superclass) {
+        //     return subclass.prototype = new superclass()
+        // }
+        Function.prototype.extendss = function (superclass) {
+            this.prototype = new superclass()
+        }
+        var Animal = function(name) {
+            this.name = name
+            this.say = function() {
+                alert('HI,我是' + this.name )
+            }
+            console.log(this)
+        }
+        Animal.prototype.shout = function () {
+            alert(this.name + '正在叫。。。')
+        }
+
+        var Cat = function(name) {
+            this.name = name
+            this.shout = function() {
+                alert(this.name + '正在喵喵叫。。。')
+            }
+            // Cat.prototype.name = name
+            // Cat.prototype.shout = function () {
+            //     alert(this.name + '正在喵喵叫。。。')
+            // }
+            console.log(this)
+        }
+        /*Cat.prototype = new Animal()
+        var cat1 = new Cat('咪咪')
+        cat1.say()
+        cat1.shout()
+        
+        var Dog = function (name) {
+            // Animal.call(this, name)
+            Animal.apply(this, [name])
+        }
+
+        var dog1 = new Dog('小黑')
+        dog1.say()
+        dog1.shout()*/
+
+        // extendss(Cat, Animal)
+        Cat.extendss(Animal)
+        var cat2 = new Cat('xiaobai')
+        cat2.say()
+        cat2.shout()
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

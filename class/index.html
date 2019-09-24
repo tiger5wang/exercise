@@ -5,9 +5,99 @@
     <title>Title</title>
 </head>
 <body>
-    <!--<div>构造函数</div>-->
-    <div>构造函数2</div>
-    <div>构造函数3</div>
+    <div>构造函数</div>
+    <div>123</div>
+    <div>1234</div>
+    <div>12345</div>
+    <div>123456</div>
     <!--<script type="text/javascript" src="index.js"></script>-->
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        let set = new Set(document.querySelectorAll('div'))
+        console.log(set)
+
+        // foo(); // "b"
+        // var a = true;
+        // if (a) {
+        //     function foo() { console.log("a"); } }
+        // else {
+        //     function foo() { console.log("b"); } }
+        // function foo() { console.log("c"); }
+
+        // foo(); // 1
+        // var foo;
+        // function foo() { console.log( 1 ); }
+        // foo = function() { console.log( 2 ); };
+
+        // for (var i=1; i<=5; i++) {
+        //     let j = i; // 是的，闭包的块作用域！
+        //     setTimeout( function timer() {
+        //         console.log( i );
+        //         }, i*1000
+        //     );
+        // }
+
+        // for (let i=1; i<=5; i++) {
+        //     setTimeout( function timer() {
+        //         console.log( i );
+        //         }, i*1000
+        //     );
+        // }
+
+        // let j;
+        // for (j=1; j<=5; j++) {
+        //     setTimeout( function timer() {
+        //         console.log( j );
+        //     }, j*1000
+        //     );
+        // }
+
+        // var a = 4;
+        // function foo() {
+        //     var a = 2;
+        //     this.bar();
+        // }
+        // function bar() {
+        //     var a = 3;
+        //     console.log('11111111111')
+        //     console.log( this.a );
+        // }
+        // foo();
+
+
+   /*     function Widget(width,height) {
+            this.width = width || 50;
+            this.height = height || 50;
+            this.$elem = null;
+        }
+        Widget.prototype.render = function($where){
+            if (this.$elem) {
+                this.$elem.css( { width: this.width + "px", height: this.height + "px" } ).appendTo( $where );
+            }
+        };
+        // 子类
+        function Button(width,height,label) { // 调用“super”构造函数
+            Widget.call( this, width, height );
+            this.label = label || "Default";
+            this.$elem = $( "<button>" ).text( this.label );
+        }// 让 Button“继承”Widget
+        Button.prototype = Object.create( Widget.prototype );
+        // 重写 render(..)
+        Button.prototype.render = function($where) {
+            //“super”调用
+            Widget.prototype.render.call( this, $where );
+            this.$elem.click( this.onClick.bind( this ) );
+        };
+        Button.prototype.onClick = function(evt) { console.log( "Button '" + this.label + "' clicked!" );
+        };
+        $( document ).ready( function(){
+            var $body = $( document.body );
+            var btn1 = new Button( 125, 30, "Hello" );
+            var btn2 = new Button( 150, 40, "World" );
+            btn1.render( $body );
+            btn2.render( $body );
+        } );*/
+
+    </script>
 </body>
 </html>

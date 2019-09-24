@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>promise 测试</div>
+    <script>
+        function loadImg(src) {
+            let promise = new Promise(function (resolve, reject) {
+                let img = document.createElement('img');
+                img.onload = function () {
+                    resolve(img)
+                };
+                img.onerror = function () {
+                    reject('图片加载失败了。。。')
+                };
+                img.src = src;
+                // throw new Error('业务逻辑之外的语法错误');
+
+            });
+            return promise
+        }
+
+        // let src = 'https://www.baidu.com/img/bd_logo1.png?where=super';
+        // let result = loadImg(src);
+        // result.then(function (img) {
+        //     console.log('resolve_1', img.width);
+        //     return img
+        // },function (error) {
+        //     console.log('reject_1', error.message)
+        //     return error
+        // }).then(function (img) {
+        //     console.log('resolve_2', img.height)
+        // }, function (error) {
+        //     console.log('reject_2', error.message)
+        // })
+        // 异常捕获
+        // result.then(function (img) {
+        //     console.log('resolve_1', img.width);
+        //     return img
+        // }).then(function (img) {
+        //     console.log('resolve_2', img.height)
+        // }).catch(function (error) {
+        //     console.log('error', error)
+        // })
+
+        let src1 = 'https://www.baidu.com/img/bd_logo1.png?where=super';
+        let result1 = loadImg(src1);
+        let src2 = 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg'
+        let result2 = loadImg(src2);
+
+        // result1.then(function (img1) {
+        //     console.log('第一张图片加载完成', img1.width);
+        //     return result2
+        // }).then(function (img2) {
+        //     console.log('第二张图片加载完成',img2.width)
+        // }).catch(function (error) {
+        //     console.log('加载失败', error)
+        // })
+
+        // Promise.all 接收一个promise 对象的数组，待全部完成之后统一执行 success
+        Promise.all([result1, result2]).then(function (datas) {
+            // 接收到的 datas 是一个数组，包含全部Promise返回的内容
+            console.log('all',datas[0])
+            console.log('all',datas[1])
+        })
+        // Promise.race 接收一个 promise 对象的数组，只要有一个执行完毕就会执行 success
+        Promise.race([result1, result2]).then(function (data) {
+            // 接收到的 data 为最先执行完毕的 premise 返回的内容
+            console.log('race',data)
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #container {
+            
+        }
+    </style>
+</head>
+<body>
+<div>sanbbdom 测试</div>
+<div id="container"></div>
+<button id="btn">按钮</button>
+
+<script src="https://cdn.bootcss.com/snabbdom/0.7.3/snabbdom.js"></script>
+<script src="https://cdn.bootcss.com/snabbdom/0.7.3/snabbdom-class.js"></script>
+<script src="https://cdn.bootcss.com/snabbdom/0.7.3/snabbdom-props.js"></script>
+<script src="https://cdn.bootcss.com/snabbdom/0.7.3/snabbdom-style.js"></script>
+<script src="https://cdn.bootcss.com/snabbdom/0.7.3/snabbdom-eventlisteners.js"></script>
+<script src="https://cdn.bootcss.com/snabbdom/0.7.3/h.js"></script>
+
+<!--<script>
+    let snabbdom = window.snabbdom;
+    // 定义patch函数
+    let patch = snabbdom.init([
+        snabbdom_class,
+        snabbdom_props,
+        snabbdom_style,
+        snabbdom_eventlisteners
+    ])
+    // 定义 h 函数
+    let h = snabbdom.h;
+
+    let container = document.getElementById('container');
+
+    // 生成 vnode
+    let vnode = h('ul#list', {}, [
+        h('li.item', {}, 'Item 1'),
+        h('li.item', {}, 'Item 2'),
+    ]);
+
+    patch(container, vnode)
+     let btn = document.getElementById('btn');
+    btn.addEventListener('click', function () {
+        // 生成 newVNode
+        let newVNode = h('ul#list', {}, [
+            h('li.item', {}, 'Item 1'),
+            h('li.item', {}, 'Item B'),
+            h('li.item', {}, 'Item 3'),
+        ]);
+        patch(vnode, newVNode)
+    })
+</script>-->
+
+<script>
+    let snabbdom = window.snabbdom;
+    // 定义patch函数
+    let patch = snabbdom.init([
+        snabbdom_class,
+        snabbdom_props,
+        snabbdom_style,
+        snabbdom_eventlisteners
+    ]);
+    // 定义 h 函数
+    let h = snabbdom.h;
+    // 获取节点
+    let container = document.getElementById('container');
+    let btn = document.getElementById('btn');
+    // 原数据
+    let data = [
+        {
+            name: '张三',
+            age: 20,
+            address: '北京'
+        }, {
+            name: '李四',
+            age: 22,
+            address: '上海'
+        },
+        {
+            name: '张三',
+            age: 21,
+            address: '石家庄'
+        },
+    ];
+
+    data.unshift({
+        name: '姓名',
+        age: '年龄',
+        address: '地址'
+    });
+
+    let vnode;
+    // 渲染函数
+    function render(data) {
+        let newVnode = h('table', {}, data.map(function (item) {
+            let tds = [], key;
+            for(key in item) {
+                tds.push(h('td',{}, item[key] + ''))
+            }
+            return h('tr',{}, tds)
+        }));
+        if(vnode) {
+            patch(vnode, newVnode)
+        } else {
+            patch(container, newVnode)
+        }
+        vnode = newVnode;
+    }
+
+    btn.addEventListener('click', function () {
+        data[1].age = 30;
+        data[2].address = '深圳';
+        // re-render
+        render(data)
+    });
+
+    render(data)
+
+
+
+</script>
+
+<script>
+    function createElement(vNode) {
+        let tag = vNode.tag;
+        let attr = vNode.attrs || {};
+        let children = vNode.children || [];
+        if(!tag) {
+            return null
+        }
+        let elem = document.createElement(tag);
+        let attrName;
+        for(attrName in attr) {
+            if(attr.hasOwnProperty(attrName)) {
+                elem.setAttribute(attrName, attr[attrName])
+            }
+        }
+        children.forEach(function (childVnode) {
+            elem.appendChild(createElement(childVnode))
+        });
+        return elem
+    }
+    
+    function updateChildren(vNode, newVnode) {
+        let children = vNode.children || [];
+        let newChildren = newVnode.children || [];
+
+        children.forEach(function (childVnode, index) {
+            let newChildVnode = newChildren[index];
+            if(childVnode === newChildVnode) {
+                updateChildren(childVnode, newChildVnode)
+            } else {
+                replaceChildren(childVnode, newChildVnode)
+            }
+        })
+    }
+    
+    function replaceChildren(vNode, newVnode) {
+        let elem = createElement(vNode);
+        let newElem = createElement(newVnode);
+        // 替换
+    }
+    // 快速排序
+    function quickSort(arr) {
+        if(!Array.isArray(arr)) {
+            alert('请输入有效的数组参数');
+            return
+        }
+        if(arr.length <= 1) {
+            return arr
+        }
+        let len = arr.length;
+        let pivotIndex = Math.floor(len / 2);  // 基准位置（理论上可以随意）
+        let pivot = arr.splice(pivotIndex,1)[0];  // 基准值
+        let i;
+        let left = [], right = [];
+        for(i=0; i< arr.length; i++) {
+            if(arr[i] < pivot) {
+                left.push(arr[i])
+            } else {
+                right.push(arr[i])
+            }
+        }
+        return quickSort(left).concat([pivot], quickSort(right))
+    }
+
+    let arr = [1,4,3,6,2,5,8,34,75,23,45,12,345,675,234,15,36,47]
+
+    // 洗牌算法
+    function shuffle(arr,size) {
+        if(!Array.isArray(arr)) {
+            alert('请输入正确的数组参数');
+            return
+        }
+        if(arr.length <= 1) {
+            return arr
+        }
+        let result = [];
+        let i;
+        for(i=0;i<arr.length;i++) {
+            const randomIndex = Math.floor(Math.random() * (arr.length - 1))
+            const random = arr[randomIndex];
+            result.push(random);
+            arr[randomIndex] = arr[arr.length-i-1];
+            arr[arr.length-i-1] = random;
+        }
+        return result
+    }
+    
+</script>
+</body>
+</html>

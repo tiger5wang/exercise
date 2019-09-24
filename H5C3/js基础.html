@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js基础</title>
+    <script>
+        // var num = 5;
+        // // ++num;
+        // console.log(++num)
+        // var num1 = 7;
+        // console.log(num + ++num1);
+        // console.log(num1);
+        // console.log(--num1);
+        // console.log(num1--);
+        // console.log(num1);
+
+        // var a=1;
+        // // var b= a++ + ++a;
+        // // console.log(b)
+        // var c=a++ + a++;
+        // console.log(c)
+
+        // var num = 18;
+        // var un;
+        // console.log(String(null))
+        // console.log(String(num))
+        // console.log(typeof String(num))
+        //
+        // var s1 = '123abc456';
+        // // parseInt 在转换字符串的时候，如果遇到数字就会转换数字，如果遇到非数字就会返回
+        // console.log(parseInt(s1));
+        //
+        //
+        // var str = '500';
+        // console.log(typeof +str);		// 取正
+        // console.log(typeof -str);		// 取负
+        // console.log(str - 0);
+
+        // var obj = {};
+        // for(var i=0;i<10;i++) {
+        //     obj[i] = i * 2;
+        // }
+        // for(var key in obj) {
+        //     console.log(key + '==' + obj[key]);
+        // }
+
+        //1.
+        // var num1 = 10;
+        // var num2 = num1;
+        // num1 = 20;
+        // console.log(num1);
+        // console.log(num2);
+
+        // var num = 50;
+        // function f1(num) {
+        //     num = 60;
+        //     console.log(num);
+        // }
+        // f1(num);  //60
+        // console.log(num);  // 50
+
+
+        //3.
+        // var num1 = 55;
+        // var num2 = 66;
+        // function f1(num, num1) {
+        //     num = 10;
+        //     num1 = 100;
+        //     num2 = 200;
+        //     num3 = 300;
+        //     console.log(num);  //100
+        //     console.log(num1);  //100
+        //     console.log(num2);  //100
+        //     console.log(num3);  //300
+        // }
+        //
+        // f1(num1, num2);
+        // console.log(num1);  //55
+        // console.log(num2);  //66
+        // console.log(num3);  //300
+        // console.log(num);  //undefined
+
+        // var now = new Date();
+        // console.log(now);
+        // console.log(now.valueOf())
+        // var now1 = new Date('2019-03-29')
+        // var now2 = new Date('2019,03,29')
+        // console.log(now1)
+        // console.log(now2)
+
+        // var arr = [1,2,3,4,5,6,7]
+        // var noArr = 234;
+        // console.log(arr.isArray())
+        // console.log(noArr.isArray())
+        // console.log(arr.toString())
+        // console.log(arr.push(8))
+        // // console.log(arr.pop())
+        // console.log(arr.unshift(0))
+        // console.log(arr.shift())
+        // arr1 = arr.slice(0,5)
+        // console.log(arr)
+        // console.log(arr1)
+
+        // var array = [15,12,20,21,28,15,16,34]
+        // array =array.filter(function (item,index) {
+        //     if(item < 20) {
+        //         return true
+        //     }
+        //     return false
+        // })
+        // console.log(array)
+        //
+        // var array =  ['c', 'a', 'z', 'a', 'x', 'a'];
+        // function clear() {
+        //     var arr = []
+        //     for (var i=0;i<array.length;i++) {
+        //         if(arr.indexOf(array[i]) === -1) {
+        //             arr.push(array[i])
+        //         }
+        //     }
+        //     return arr
+        // }
+        //
+        // console.log(clear(array))
+
+
+        // var str = new String('Hello-World');
+        // var s1 = str.substring(5,3)
+        // var s2 = str.slice(5,3)
+        // var s3 = str.substr(5)
+        // console.log(str.charAt(2))
+        // console.log(s1)
+        // console.log(s2)
+        // console.log(s3)
+        // 获取字符串中字符的个数
+        // console.log(str.length);
+        // 字符串中出现此输最多的字符计次数
+        // var s = 'abcoefoxyozzopp';
+        // console.log(s.replace(/o/g,'-'))
+        // var obj = {};
+        // for(var i=0;i<s.length;i++) {
+        //     var item = s.charAt(i);
+        //     if(obj[item]) {
+        //         obj[item] ++
+        //     }else {
+        //         obj[item] = 1;
+        //     }
+        // }
+        // var max = 0;
+        // var char;
+        // for (var key in obj) {
+        //     if(obj[key] > max) {
+        //         max = obj[key];
+        //         char = key;
+        //     }
+        // }
+        // console.log(char , max)
+        function fun() {
+            console.log(this)
+        }
+        fun()
+        let a = 11;
+        console.log(window.a)
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

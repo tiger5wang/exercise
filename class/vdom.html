@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>vdom测试</div>
+<div id="container"></div>
+<button id="btn">按钮</button>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    console.log(a)
+    var a
+</script>
+<script>
+    let data = [
+        {
+            name: '张三',
+            age: 20,
+            address: '北京'
+        }, {
+            name: '李四',
+            age: 22,
+            address: '上海'
+        },
+        {
+            name: '张三',
+            age: 21,
+            address: '石家庄'
+        },
+    ]
+
+    function render(data) {
+        // 以下为内容
+        let $container = $('#container');
+        // 先要清空内容
+        $container.html('');
+
+        let $table = $('<table>');
+        $table.append('<tr><td>姓名</td><td>年龄</td><td>地址</td></tr>')
+        data.forEach(function (item) {
+            $table.append(`<tr><td>${item.name}</td><td>${item.age}</td><td>${item.address}</td></tr>`)
+        })
+
+        $container.append($table)
+    }
+    $('#btn').click(function () {
+        data[1].age = 30;
+        data[2].address = '深圳';
+        // re-render
+        render(data)
+    })
+
+    // 渲染内容
+    render(data)
+</script>
+</body>
+</html>
